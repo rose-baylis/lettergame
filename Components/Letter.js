@@ -1,20 +1,13 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
-import Letter from "./Components/Letter"
 
-export default function App() {
-  const word = ["wine"]
-  const numberOfLetters = word[0].length
-  const arrayOfLetters = word[0].split("")
-
+export default function letter(props) {
+    const { letter } = props
   return (
     <View style={styles.container}>
       
-      {arrayOfLetters.map((letter) => {
-        return <Letter letter={letter}/>
-      })}
+     <Text style={styles.letter}>{letter}</Text>
 
-      <StatusBar style="auto" />
     </View>
   )
 }
@@ -26,5 +19,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-  }
+  },
+  letter:{
+    color: '#99A3D9',
+    fontSize: 40,
+    // padding: 10,
+    // width:100,
+    textDecorationLine: 'underline'
+  },
 })
