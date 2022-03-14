@@ -35,7 +35,7 @@ export default function Keyboard(props) {
   const [modalVisible, setModalVisible] = useState(false)
 
   const onPress = (e, prop) => {
-    console.log("the prop in Keyboard", prop)
+    // console.log("the prop in Keyboard", prop)
     letterPressed(prop)
   }
   return (

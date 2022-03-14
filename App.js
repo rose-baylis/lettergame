@@ -6,33 +6,38 @@ import Letters from "./Components/Letters"
 import Keyboard from "./Components/Keyboard"
 
 export default function App() {
+
   const [word, setWord] = useState(["wine"])
 
-  const [arrayOfLetters, setArrayOfLetters] = useState(word[0].split(""))
+  const [toCheck, setToCheck] = useState(word[0].split(""))
+  const [arrayOfLetters, setArrayOfLetters] = useState([...toCheck].fill(''))
 
   const [theLetterPressed, setTheLetterPressed] = useState()
 
   const reset = () => {
     console.log("reset pressed")
-    setArrayOfLetters(word[0].split(""))
+    setArrayOfLetters([...toCheck].fill(''))
     setTheLetterPressed()
   }
 
   const letterPressed = (letter) => {
-    console.log("returned to App", letter)
     setTheLetterPressed(letter.letter)
  }
 
  useEffect(() => {
-    const found = arrayOfLetters.find(letter=> letter===theLetterPressed)
-    const newArr = arrayOfLetters.filter(letter => letter !== found)
+    const newArr = [...arrayOfLetters]
+    toCheck.forEach((letter, index) =>{
+      if(letter===theLetterPressed){
+        newArr[index] = letter
+      }
+    })
+
     setArrayOfLetters(newArr)
   },[theLetterPressed])
 
 
   return (
     <View style={styles.container}>
-
       <Letters letters={arrayOfLetters} />
       <Text style={styles.button} onPress={reset}>Reset</Text>
       <Keyboard letterPressed={letterPressed} />
