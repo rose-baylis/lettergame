@@ -15,28 +15,19 @@ export default function App() {
   const reset = () => {
     console.log("reset pressed")
     setArrayOfLetters(word[0].split(""))
+    setTheLetterPressed()
   }
 
-  const setLetterPressed = (letter) => {
+  const letterPressed = (letter) => {
     console.log("returned to App", letter)
-    
     setTheLetterPressed(letter.letter)
-   
+ }
+
+ useEffect(() => {
     const found = arrayOfLetters.find(letter=> letter===theLetterPressed)
     const newArr = arrayOfLetters.filter(letter => letter !== found)
     setArrayOfLetters(newArr)
-
-    
-    // arrayOfLetters.forEach(letter => {
-    //   if(letter === theLetterPressed){
-    //     console.log("a match", letter)
-        // const newArr = arrayOfLetters.filter(letter => letter === theLetterPressed)
-        // setArrayOfLetters(newArr)
-        
-      // }
-    // })
- }
-
+  },[theLetterPressed])
 
 
   return (
@@ -44,7 +35,7 @@ export default function App() {
 
       <Letters letters={arrayOfLetters} />
       <Text style={styles.button} onPress={reset}>Reset</Text>
-      <Keyboard setLetterPressed={setLetterPressed} />
+      <Keyboard letterPressed={letterPressed} />
       <StatusBar style="auto" />
       
     </View>
