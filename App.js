@@ -1,6 +1,8 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 import Letter from "./Components/Letter"
+import Letters from "./Components/Letters"
+import Keyboard from "./Components/Keyboard"
 
 export default function App() {
   const word = ["wine"]
@@ -9,11 +11,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      
-      {arrayOfLetters.map((letter) => {
-        return <Letter letter={letter}/>
-      })}
-
+      <Letters />
+      <Keyboard />
       <StatusBar style="auto" />
     </View>
   )
@@ -25,6 +24,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#192045",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
   }
 })
