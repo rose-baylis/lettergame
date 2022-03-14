@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 import Letter from "./Components/Letter"
@@ -9,10 +10,19 @@ export default function App() {
   const numberOfLetters = word[0].length
   const arrayOfLetters = word[0].split("")
 
+
+  const [theLetterPressed, setTheLetterPressed] = useState()
+  const setLetterPressed = (letter) => {
+    console.log("returned to App",letter)
+      // setTheLetterPressed(letter[0])
+  }
+
+
   return (
     <View style={styles.container}>
       <Letters />
-      <Keyboard />
+      <Keyboard setLetterPressed={setLetterPressed}
+ />
       <StatusBar style="auto" />
     </View>
   )

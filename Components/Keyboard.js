@@ -1,17 +1,28 @@
-import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View, Button } from "react-native"
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button, Modal, Pressable } from "react-native"
+
 
 export default function Keyboard(props) {
-  const letters = [{letter:'a'},{letter:'b'},{letter:'c'}]
+  const { setLetterPressed } = props
+
+  const letters = [{letter:'a'},{letter:'b'},{letter:'c'},{letter:'d'},{letter:'e'}]
+  const [modalVisible, setModalVisible]= useState(false)
+ 
+  const onPress = (e, prop) =>{     
+    console.log("the prop in Keyboard", prop) 
+    setLetterPressed(prop)
+
+  }
   return (
+    <>
+
     <View style={styles.container}>
-      
       {letters.map((letter) => {
-        return <Button title={letter.letter} />
+        return <Text
+         style={styles.keyboardButton} name="bleh" onPress={e => onPress(e, letter)} >{letter.letter}</Text>
       })}
-
-
     </View>
+    </>
   )
 }
 
@@ -21,12 +32,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#192045",
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+
   },
-  letter:{
-    color: '#99A3D9',
-    fontSize: 40,
-    // padding: 10,
-    // width:100,
-    textDecorationLine: 'underline'
+  keyboardButton:{
+    marginRight:40,
+    marginLeft:40,
+    marginTop:10,
+    padding:20,
+    color: "#ffff",
+    backgroundColor:'#293577',
+    borderRadius:5,
   },
 })

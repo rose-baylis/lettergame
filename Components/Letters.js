@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
+import { useState } from "react/cjs/react.production.min"
 import Letter from "./Letter"
 
 export default function App() {
@@ -7,9 +8,10 @@ export default function App() {
   const numberOfLetters = word[0].length
   const arrayOfLetters = word[0].split("")
 
+
+
   return (
     <View style={styles.container}>
-      
       {arrayOfLetters.map((letter) => {
         return <Letter letter={letter}/>
       })}
