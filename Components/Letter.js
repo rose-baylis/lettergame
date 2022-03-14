@@ -2,12 +2,10 @@ import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
 export default function Letter(props) {
-    const { letter } = props
+  const { letter } = props
   return (
     <View style={styles.container}>
-      
-     <Text style={styles.letter}>{letter}</Text>
-
+      <Text style={styles.letter}>{letter}</Text>
     </View>
   )
 }
@@ -20,11 +18,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
   },
-  letter:{
-    color: '#99A3D9',
+  letter: {
+    color: "#99A3D9",
     fontSize: 40,
     // padding: 10,
     // width:100,
-    textDecorationLine: 'underline'
+    textDecorationLine: "underline",
   },
 })
