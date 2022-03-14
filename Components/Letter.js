@@ -13,16 +13,17 @@ export default function Letter(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#192045",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
+    borderBottomWidth:3,
+    borderBottomColor: "#99A3D9",
+    padding:10,
+    margin:10,
+    minHeight:70
+
   },
   letter: {
     color: "#99A3D9",
     fontSize: 40,
-    // padding: 10,
-    // width:100,
-    textDecorationLine: "underline",
   },
 })

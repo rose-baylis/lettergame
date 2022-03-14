@@ -31,7 +31,6 @@ export default function App() {
         newArr[index] = letter
       }
     })
-
     setArrayOfLetters(newArr)
   },[theLetterPressed])
 
