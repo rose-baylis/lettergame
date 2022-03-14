@@ -7,8 +7,6 @@ import Keyboard from "./Components/Keyboard"
 
 export default function App() {
   const [word, setWord] = useState(["wine"])
-  const numberOfLetters = word[0].length
-  // const arrayOfLetters = word[0].split("")
 
   const [arrayOfLetters, setArrayOfLetters] = useState(word[0].split(""))
 
@@ -16,7 +14,7 @@ export default function App() {
 
   const reset = () => {
     console.log("reset pressed")
-    setWord(["wine"])
+    setArrayOfLetters(word[0].split(""))
   }
 
   const setLetterPressed = (letter) => {
@@ -45,8 +43,7 @@ export default function App() {
     <View style={styles.container}>
 
       <Letters letters={arrayOfLetters} />
-      <Text onPress={reset}>Reset</Text>
-
+      <Text style={styles.button} onPress={reset}>Reset</Text>
       <Keyboard setLetterPressed={setLetterPressed} />
       <StatusBar style="auto" />
       
@@ -62,4 +59,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: '#fff'
   },
+  button:{
+    color: '#99A3D9',
+    padding:10,
+    fontSize:16
+    
+  }
 })
