@@ -8,7 +8,8 @@ import defaultKeyboard from './keyboardLetters.json'
 
 export default function App() {
  
-  const [word, setWord] = useState("wine")
+  const [won, setWon] = useState(false)
+  const [word, setWord] = useState("plant")
 
   // Make an array, filled with each letter of the word
   const [toCheckAgainst, setToCheckAgainst] = useState(word.split(""))
@@ -26,7 +27,7 @@ export default function App() {
     setTheLetterPressed(letter)
  }
 
-  // When letter pressed, check if it exists in the word.
+  // When letter pressed, check if it exists in the word
  useEffect(() => {
    const newArr = [...lettersToPopulate]
     toCheckAgainst.forEach((letter, index) =>{
@@ -35,7 +36,18 @@ export default function App() {
       }
     })
    setLettersToPopulate(newArr)
+   checkWin(newArr, toCheckAgainst)
+
   },[theLetterPressed])
+
+  const checkWin = (arr1, arr2) => {
+    for (var i = 0; i < arr1.length; ++i) {
+      if (arr1[i] !== arr2[i]) return false;
+    }
+    console.log("you won!")
+    setWon(true)
+    }
+   
 
   //Reset hooks
   const reset = () => {

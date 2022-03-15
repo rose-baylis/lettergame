@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   disabled: {
     color: "#5362B1",
     fontSize: 18,
+    // backgroundColor: '#212959'
   },
   keyboardLetter: {
     color: "#ffff",
