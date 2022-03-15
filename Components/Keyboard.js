@@ -2,52 +2,23 @@ import React, { useState } from "react"
 import { StyleSheet, Text, View, Button, Modal, Pressable } from "react-native"
 
 export default function Keyboard(props) {
-  const { letterPressed } = props
-
-  const [keyboardLetters, setkeyboardLetters]=useState([
-    { letter: "a" },
-    { letter: "b" },
-    { letter: "c" },
-    { letter: "d" },
-    { letter: "e" },
-    { letter: "f" },
-    { letter: "g" },
-    { letter: "h" },
-    { letter: "i" },
-    { letter: "j" },
-    { letter: "k" },
-    { letter: "l" },
-    { letter: "m" },
-    { letter: "n" },
-    { letter: "o" },
-    { letter: "p" },
-    { letter: "q" },
-    { letter: "r" },
-    { letter: "s" },
-    { letter: "t" },
-    { letter: "u" },
-    { letter: "v" },
-    { letter: "w" },
-    { letter: "x" },
-    { letter: "y" },
-    { letter: "z" },
-  ])
+  const { letterPressed, keyboardLetters } = props
 
   const onPress = (e, prop) => {
     prop.status = "disabled"
-    letterPressed(prop)
+    letterPressed(prop.letter)
   }
 
   return (
     <>
       <View style={styles.container}>
-        {keyboardLetters.map((letter) => {
-          console.log(letter)
+        {keyboardLetters.map((letter, i) => {
           return (
             <Pressable
               style={styles.keyboardButton}
               onPress={(e) => onPress(e, letter)}
               disabled={letter.status === "disabled" ? true : false}
+              key={i}
             >
               <Text
                 style={

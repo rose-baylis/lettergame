@@ -8,8 +8,8 @@ export default function Letters(props) {
 
   return (
     <View style={styles.container}>
-      {letters.map((letter) => {
-        return <Letter letter={letter} />
+      {letters.map((letter, i) => {
+        return <Letter key={i} letter={letter} />
       })}
     </View>
   )

@@ -4,44 +4,52 @@ import { StyleSheet, Text, View } from "react-native"
 import Letter from "./Components/Letter"
 import Letters from "./Components/Letters"
 import Keyboard from "./Components/Keyboard"
+import defaultKeyboard from './keyboardLetters.json'
 
 export default function App() {
+ 
+  const [word, setWord] = useState("wine")
 
-  const [word, setWord] = useState(["wine"])
+  // Make an array, filled with each letter of the word
+  const [toCheckAgainst, setToCheckAgainst] = useState(word.split(""))
 
-  const [toCheck, setToCheck] = useState(word[0].split(""))
-  const [arrayOfLetters, setArrayOfLetters] = useState([...toCheck].fill(''))
+  // Make an array to populate the UI with blank spaces. When a letter matches we add to this array
+  const [lettersToPopulate, setLettersToPopulate] = useState([...toCheckAgainst].fill(''))
 
   const [theLetterPressed, setTheLetterPressed] = useState()
 
-  const reset = () => {
-    console.log("reset pressed")
-    setArrayOfLetters([...toCheck].fill(''))
-    setTheLetterPressed()
-  }
+  // Make a deep copy of the imported data
+  const keyboardData = JSON.parse(JSON.stringify(defaultKeyboard))
+  const [keyboardLetters, setKeyboardLetters] = useState(keyboardData)
 
   const letterPressed = (letter) => {
-    setTheLetterPressed(letter.letter)
+    setTheLetterPressed(letter)
  }
 
+  // When letter pressed, check if it exists in the word.
  useEffect(() => {
-    const newArr = [...arrayOfLetters]
-    toCheck.forEach((letter, index) =>{
+   const newArr = [...lettersToPopulate]
+    toCheckAgainst.forEach((letter, index) =>{
       if(letter===theLetterPressed){
         newArr[index] = letter
       }
     })
-    setArrayOfLetters(newArr)
+   setLettersToPopulate(newArr)
   },[theLetterPressed])
 
+  //Reset hooks
+  const reset = () => {
+    setLettersToPopulate([...toCheckAgainst].fill(''))
+    setTheLetterPressed()
+    setKeyboardLetters(JSON.parse(JSON.stringify(defaultKeyboard)))
+  }
 
   return (
     <View style={styles.container}>
-      <Letters letters={arrayOfLetters} />
+      <Letters letters={lettersToPopulate} />
       <Text style={styles.button} onPress={reset}>Reset</Text>
-      <Keyboard letterPressed={letterPressed} />
+      <Keyboard letterPressed={letterPressed} keyboardLetters={keyboardLetters} />
       <StatusBar style="auto" />
-      
     </View>
   )
 }
