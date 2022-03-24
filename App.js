@@ -7,7 +7,6 @@ import Keyboard from "./Components/Keyboard"
 import defaultKeyboard from './keyboardLetters.json'
 
 export default function App() {
- 
   const [won, setWon] = useState(false)
   const [word, setWord] = useState("plant")
 
@@ -17,28 +16,20 @@ export default function App() {
   // Make an array to populate the UI with blank spaces. When a letter matches we add to this array
   const [lettersToPopulate, setLettersToPopulate] = useState([...toCheckAgainst].fill(''))
 
-  const [theLetterPressed, setTheLetterPressed] = useState()
-
   // Make a deep copy of the imported data
   const keyboardData = JSON.parse(JSON.stringify(defaultKeyboard))
   const [keyboardLetters, setKeyboardLetters] = useState(keyboardData)
 
-  const letterPressed = (letter) => {
-    setTheLetterPressed(letter)
- }
-
-  // When letter pressed, check if it exists in the word
- useEffect(() => {
-   const newArr = [...lettersToPopulate]
-    toCheckAgainst.forEach((letter, index) =>{
-      if(letter===theLetterPressed){
-        newArr[index] = letter
-      }
-    })
-   setLettersToPopulate(newArr)
-   checkWin(newArr, toCheckAgainst)
-
-  },[theLetterPressed])
+const handleLetterPress = (pressedLetter) => {
+  const newArr = [...lettersToPopulate]
+     toCheckAgainst.forEach((letter, index) =>{
+        if(letter===pressedLetter){
+          newArr[index] = letter
+        }
+      })
+     setLettersToPopulate(newArr)
+     checkWin(newArr, toCheckAgainst)
+}
 
   const checkWin = (arr1, arr2) => {
     for (var i = 0; i < arr1.length; ++i) {
@@ -53,7 +44,6 @@ export default function App() {
   //Reset hooks
   const reset = () => {
     setLettersToPopulate([...toCheckAgainst].fill(''))
-    setTheLetterPressed()
     setKeyboardLetters(JSON.parse(JSON.stringify(defaultKeyboard)))
   }
 
@@ -61,7 +51,7 @@ export default function App() {
     <View style={styles.container}>
       <Letters letters={lettersToPopulate} />
       <Text style={styles.button} onPress={reset}>Reset</Text>
-      <Keyboard letterPressed={letterPressed} keyboardLetters={keyboardLetters} />
+      <Keyboard  handleLetterPress={handleLetterPress} keyboardLetters={keyboardLetters} />
       <StatusBar style="auto" />
     </View>
   )

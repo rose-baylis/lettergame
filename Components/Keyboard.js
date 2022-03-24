@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import { StyleSheet, Text, View, Button, Modal, Pressable } from "react-native"
+import React from "react"
+import { StyleSheet, Text, View, Pressable } from "react-native"
 
 export default function Keyboard(props) {
-  const { letterPressed, keyboardLetters } = props
+  const { handleLetterPress, keyboardLetters } = props
 
   const onPress = (e, prop) => {
     prop.status = "disabled"
-    letterPressed(prop.letter)
+    handleLetterPress(prop.letter)
   }
 
   return (
