@@ -7,7 +7,6 @@ import Keyboard from "./Components/Keyboard"
 import defaultKeyboard from './keyboardLetters.json'
 
 export default function App() {
- 
   const [won, setWon] = useState(false)
   const [word, setWord] = useState("plant")
 
@@ -23,9 +22,6 @@ export default function App() {
   const keyboardData = JSON.parse(JSON.stringify(defaultKeyboard))
   const [keyboardLetters, setKeyboardLetters] = useState(keyboardData)
 
-  const letterPressed = (letter) => {
-    setTheLetterPressed(letter)
- }
 
   // When letter pressed, check if it exists in the word
  useEffect(() => {
@@ -61,7 +57,7 @@ export default function App() {
     <View style={styles.container}>
       <Letters letters={lettersToPopulate} />
       <Text style={styles.button} onPress={reset}>Reset</Text>
-      <Keyboard letterPressed={letterPressed} keyboardLetters={keyboardLetters} />
+      <Keyboard setTheLetterPressed={setTheLetterPressed} keyboardLetters={keyboardLetters} />
       <StatusBar style="auto" />
     </View>
   )
