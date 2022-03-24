@@ -20,7 +20,7 @@ export default function App() {
   const keyboardData = JSON.parse(JSON.stringify(defaultKeyboard))
   const [keyboardLetters, setKeyboardLetters] = useState(keyboardData)
 
-const handleLetter = (pressedLetter) => {
+const handleLetterPress = (pressedLetter) => {
   const newArr = [...lettersToPopulate]
      toCheckAgainst.forEach((letter, index) =>{
         if(letter===pressedLetter){
@@ -51,7 +51,7 @@ const handleLetter = (pressedLetter) => {
     <View style={styles.container}>
       <Letters letters={lettersToPopulate} />
       <Text style={styles.button} onPress={reset}>Reset</Text>
-      <Keyboard  handleLetter={handleLetter} keyboardLetters={keyboardLetters} />
+      <Keyboard  handleLetterPress={handleLetterPress} keyboardLetters={keyboardLetters} />
       <StatusBar style="auto" />
     </View>
   )
