@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import { StyleSheet, Text, View, Button, Modal, Pressable } from "react-native"
 
 export default function Keyboard(props) {
-  const { setTheLetterPressed, keyboardLetters } = props
+  const { setTheLetterPressed, handleLetter, keyboardLetters } = props
 
   const onPress = (e, prop) => {
     prop.status = "disabled"
-    setTheLetterPressed(prop.letter)
+    handleLetter(prop.letter)
   }
 
   return (
