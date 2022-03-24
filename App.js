@@ -29,15 +29,15 @@ export default function App() {
 
   // When letter pressed, check if it exists in the word
  useEffect(() => {
+   console.log("letter pressed", theLetterPressed)
    const newArr = [...lettersToPopulate]
-    toCheckAgainst.forEach((letter, index) =>{
+   toCheckAgainst.forEach((letter, index) =>{
       if(letter===theLetterPressed){
         newArr[index] = letter
       }
     })
    setLettersToPopulate(newArr)
    checkWin(newArr, toCheckAgainst)
-
   },[theLetterPressed])
 
   const checkWin = (arr1, arr2) => {
